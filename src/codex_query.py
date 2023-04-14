@@ -5,6 +5,7 @@ import openai
 import sys
 import os
 import configparser
+import platform
 import re
 import psutil
 
@@ -197,6 +198,8 @@ if __name__ == '__main__':
             print("\n#\tUnsupported shell type, please use # set shell <shell>")
         else:
             prefix = '#' + config['shell'] + '\n\n'
+
+        prefix += "# This script will run on : " + platform.system() + "\n\n"
 
         codex_query = prefix + prompt_file.read_prompt_file(user_query) + user_query + '\n'
 
